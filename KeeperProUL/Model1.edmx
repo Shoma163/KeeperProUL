@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KeeperProULModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Purpose" />
+          </Key>
+          <Property Name="User" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Purpose" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="NameDepartment" />
+          </Key>
+          <Property Name="NameDepartment" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="NameDivision" />
+          </Key>
+          <Property Name="NameDivision" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group" Type="int" />
+          <Property Name="Staff" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="CodeStaff" />
+          </Key>
+          <Property Name="CodeStaff" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Division" Type="varchar" MaxLength="255" />
+          <Property Name="Department" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="NameStatus" />
+          </Key>
+          <Property Name="NameStatus" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="DataPassport" />
+          </Key>
+          <Property Name="DataPassport" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Applicati__Purpo__690797E6">
+          <End Role="Purpose" Type="Self.Purpose" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Purpose" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicati__Statu__69FBBC1F">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="NameStatus" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicatio__User__681373AD">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="DataPassport" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purpose__Staff__65370702">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Purpose" Type="Self.Purpose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="CodeStaff" />
+            </Principal>
+            <Dependent Role="Purpose">
+              <PropertyRef Name="Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Departmen__6166761E">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="NameDepartment" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Division__607251E5">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="NameDivision" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KeeperProULModelContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purpose" EntityType="Self.Purpose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Applicati__Purpo__690797E6" Association="Self.FK__Applicati__Purpo__690797E6">
+            <End Role="Purpose" EntitySet="Purpose" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicati__Statu__69FBBC1F" Association="Self.FK__Applicati__Statu__69FBBC1F">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicatio__User__681373AD" Association="Self.FK__Applicatio__User__681373AD">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purpose__Staff__65370702" Association="Self.FK__Purpose__Staff__65370702">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Purpose" EntitySet="Purpose" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Departmen__6166761E" Association="Self.FK__Staff__Departmen__6166761E">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Division__607251E5" Association="Self.FK__Staff__Division__607251E5">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeeperProULModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Purpose" />
+          </Key>
+          <Property Name="User" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Purpose" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Purpose1" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Application" ToRole="Purpose" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK__Applicati__Statu__69FBBC1F" FromRole="Application" ToRole="Status" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__Applicatio__User__681373AD" FromRole="Application" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="NameDepartment" />
+          </Key>
+          <Property Name="NameDepartment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Departmen__6166761E" FromRole="Department" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="NameDivision" />
+          </Key>
+          <Property Name="NameDivision" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Division__607251E5" FromRole="Division" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Purpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group" Type="Int32" />
+          <Property Name="Staff" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Purpose" ToRole="Application" />
+          <NavigationProperty Name="Staff1" Relationship="Self.FK__Purpose__Staff__65370702" FromRole="Purpose" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="CodeStaff" />
+          </Key>
+          <Property Name="CodeStaff" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department1" Relationship="Self.FK__Staff__Departmen__6166761E" FromRole="Staff" ToRole="Department" />
+          <NavigationProperty Name="Division1" Relationship="Self.FK__Staff__Division__607251E5" FromRole="Staff" ToRole="Division" />
+          <NavigationProperty Name="Purposes" Relationship="Self.FK__Purpose__Staff__65370702" FromRole="Staff" ToRole="Purpose" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="NameStatus" />
+          </Key>
+          <Property Name="NameStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Statu__69FBBC1F" FromRole="Status" ToRole="Application" />
+        </EntityType>
+        <EntityType Name="k">
+          <Key>
+            <PropertyRef Name="DataPassport" />
+          </Key>
+          <Property Name="DataPassport" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK__Applicatio__User__681373AD" FromRole="User" ToRole="Application" />
+        </EntityType>
+        <Association Name="FK__Applicati__Purpo__690797E6">
+          <End Role="Purpose" Type="Self.Purpose" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Purpose" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicati__Statu__69FBBC1F">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="NameStatus" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicatio__User__681373AD">
+          <End Role="User" Type="KeeperProULModel.k" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="DataPassport" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Departmen__6166761E">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="NameDepartment" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Division__607251E5">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="NameDivision" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purpose__Staff__65370702">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Purpose" Type="Self.Purpose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="CodeStaff" />
+            </Principal>
+            <Dependent Role="Purpose">
+              <PropertyRef Name="Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeeperProULEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Divisions" EntityType="Self.Division" />
+          <EntitySet Name="Purposes" EntityType="Self.Purpose" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="k" EntityType="KeeperProULModel.k" />
+          <AssociationSet Name="FK__Applicati__Purpo__690797E6" Association="Self.FK__Applicati__Purpo__690797E6">
+            <End Role="Purpose" EntitySet="Purposes" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicati__Statu__69FBBC1F" Association="Self.FK__Applicati__Statu__69FBBC1F">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicatio__User__681373AD" Association="Self.FK__Applicatio__User__681373AD">
+            <End Role="User" EntitySet="k" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Departmen__6166761E" Association="Self.FK__Staff__Departmen__6166761E">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Division__607251E5" Association="Self.FK__Staff__Division__607251E5">
+            <End Role="Division" EntitySet="Divisions" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purpose__Staff__65370702" Association="Self.FK__Purpose__Staff__65370702">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Purpose" EntitySet="Purposes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KeeperProULModelContainer" CdmEntityContainer="KeeperProULEntities">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="KeeperProULModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="KeeperProULModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="NameDepartment" ColumnName="NameDepartment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Divisions">
+            <EntityTypeMapping TypeName="KeeperProULModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="NameDivision" ColumnName="NameDivision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purposes">
+            <EntityTypeMapping TypeName="KeeperProULModel.Purpose">
+              <MappingFragment StoreEntitySet="Purpose">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Staff" ColumnName="Staff" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="KeeperProULModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="CodeStaff" ColumnName="CodeStaff" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="KeeperProULModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="k">
+            <EntityTypeMapping TypeName="KeeperProULModel.k">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DataPassport" ColumnName="DataPassport" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
