@@ -1,5 +1,4 @@
-﻿using KeeperProUL.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KeeperProUL
+namespace KeeperProUL.Pages
 {
-    public partial class MainWindow : Window
+    public partial class Authorization : Page
     {
         public KeeperProULEntities database;
-        public MainWindow()
+        public Authorization()
         {
             InitializeComponent();
 
             database = new KeeperProULEntities();
+        }
 
-            AppFrame.Navigate(new Authorization());
+        private void btnSingIn(object sender, RoutedEventArgs e)
+        {
+            int codeStaff = int.Parse(tbCodeStaff.Text);
+
+            Staff staff = database.Staffs.Where(u => u.CodeStaff == codeStaff).FirstOrDefault();
+            if (staff == null)
+            {
+                MessageBox.Show("Неверный код сотрудника");
+                return;
+            }
         }
     }
 }
