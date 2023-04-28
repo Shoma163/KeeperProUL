@@ -21,7 +21,7 @@
                
                 <Label Content="Введите код сотрудника" Margin="15 5 15 5" FontSize="13"></Label>
                 
-                <TextBox Margin="15 0 15 5" Height="25" Name="tbCodeStaff" VerticalContentAlignment="Center" >
+                <TextBox Margin="15 0 15 5" Padding="5 0 0 0" Height="25" Name="tbCodeStaff" VerticalContentAlignment="Center" >
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="8"/>

@@ -14,6 +14,15 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ListView Name="lvApplications" Grid.Column="0" ItemTemplate="{StaticResource lvApplications}"></ListView>
+        <ListView Name="lvApplications" Grid.Column="0" ItemTemplate="{StaticResource lvApplications}" HorizontalContentAlignment="Stretch"></ListView>
+
+        <StackPanel Grid.Column="1">
+            <TextBox Name="Search" TextChanged="Search_TextChanged" Margin="5"></TextBox>
+            <ComboBox Grid.Row="1" Margin="5"
+                  SelectedItem="{Binding SelectedSortDescription}"
+                  ItemsSource="{Binding SortDescriptions}"
+                  DisplayMemberPath="Name"
+                  SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+        </StackPanel>
     </Grid>
 </Page>
