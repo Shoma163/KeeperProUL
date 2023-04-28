@@ -10,7 +10,7 @@
 
     <Grid Background="White">
 
-        <Image Source="/Images/BackgroundAutorization.png"/>
+        <Image Source="/Images/BackgroundAutorization.png" Stretch="UniformToFill"/>
 
         <Border Height="170" Width="350" Background="#99FCFCEE" CornerRadius="10">
             <StackPanel>

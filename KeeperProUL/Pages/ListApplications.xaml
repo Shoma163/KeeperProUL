@@ -9,6 +9,11 @@
       Title="ListApplications">
 
     <Grid Background="White">
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListView Name="lvApplications" Grid.Column="0" ItemTemplate="{StaticResource lvApplications}"></ListView>
     </Grid>
 </Page>

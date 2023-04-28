@@ -12,10 +12,10 @@ namespace KeeperProUL
     using System;
     using System.Collections.Generic;
     
-    public partial class k
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public k()
+        public User()
         {
             this.Applications = new HashSet<Application>();
         }
@@ -29,6 +29,7 @@ namespace KeeperProUL
         public System.DateTime DateOfBirth { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public Nullable<int> Position { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }

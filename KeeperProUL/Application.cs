@@ -20,6 +20,6 @@ namespace KeeperProUL
     
         public virtual Purpose Purpose1 { get; set; }
         public virtual Status Status1 { get; set; }
-        public virtual k User1 { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

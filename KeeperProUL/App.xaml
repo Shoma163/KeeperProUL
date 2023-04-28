@@ -4,6 +4,25 @@
              xmlns:local="clr-namespace:KeeperProUL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate x:Key="lvApplications">
+            <Grid>
+                <TextBlock>
+                    <Border Height="30" Background="Orange"></Border>
+                    <Run Text="Паспортные данные: "></Run>
+                    <Run Text="{Binding User1.DataPassport}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="ФИО: "></Run>
+                    <Run Text="{Binding User1.LastName}"></Run>
+                    <Run Text="{Binding User1.FirstName}"></Run>
+                    <Run Text="{Binding User1.Patronymic}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="Дата рождения: "></Run>
+                    <Run Text="{Binding User1.DateOfBirth, StringFormat=d}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="Статус заявки: "></Run>
+                    <Run Text="{Binding Status}"></Run>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -35,6 +35,10 @@ namespace KeeperProUL.Pages
                 MessageBox.Show("Неверный код сотрудника");
                 return;
             }
+            else
+            {
+                NavigationService.Navigate(new ListApplications());
+            }
         }
     }
 }

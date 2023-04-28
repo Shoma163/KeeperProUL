@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="KeeperProULModel.Purpose" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="KeeperProULModel.Staff" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="KeeperProULModel.Status" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KeeperProULModel.k" Width="1.5" PointX="9.875" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeeperProULModel.User" Width="1.5" PointX="9.875" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="KeeperProULModel.FK__Applicati__Purpo__690797E6" ManuallyRouted="false" />
         <AssociationConnector Association="KeeperProULModel.FK__Applicati__Statu__69FBBC1F" ManuallyRouted="false" />
         <AssociationConnector Association="KeeperProULModel.FK__Applicatio__User__681373AD" ManuallyRouted="false" />

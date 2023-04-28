@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище KeeperProULModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище KeeperProULModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="User" />
@@ -65,6 +65,7 @@
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Login" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Position" Type="int" />
         </EntityType>
         <Association Name="FK__Applicati__Purpo__690797E6">
           <End Role="Purpose" Type="Self.Purpose" Multiplicity="1" />
@@ -171,8 +172,7 @@
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KeeperProULModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -234,7 +234,7 @@
           <Property Name="NameStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Statu__69FBBC1F" FromRole="Status" ToRole="Application" />
         </EntityType>
-        <EntityType Name="k">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="DataPassport" />
           </Key>
@@ -248,6 +248,7 @@
           <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Applications" Relationship="Self.FK__Applicatio__User__681373AD" FromRole="User" ToRole="Application" />
+          <Property Name="Position" Type="Int32" />
         </EntityType>
         <Association Name="FK__Applicati__Purpo__690797E6">
           <End Role="Purpose" Type="Self.Purpose" Multiplicity="1" />
@@ -274,7 +275,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Applicatio__User__681373AD">
-          <End Role="User" Type="KeeperProULModel.k" Multiplicity="1" />
+          <End Role="User" Type="KeeperProULModel.User" Multiplicity="1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -328,7 +329,7 @@
           <EntitySet Name="Purposes" EntityType="Self.Purpose" />
           <EntitySet Name="Staffs" EntityType="Self.Staff" />
           <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="k" EntityType="KeeperProULModel.k" />
+          <EntitySet Name="Users" EntityType="KeeperProULModel.User" />
           <AssociationSet Name="FK__Applicati__Purpo__690797E6" Association="Self.FK__Applicati__Purpo__690797E6">
             <End Role="Purpose" EntitySet="Purposes" />
             <End Role="Application" EntitySet="Applications" />
@@ -338,7 +339,7 @@
             <End Role="Application" EntitySet="Applications" />
           </AssociationSet>
           <AssociationSet Name="FK__Applicatio__User__681373AD" Association="Self.FK__Applicatio__User__681373AD">
-            <End Role="User" EntitySet="k" />
+            <End Role="User" EntitySet="Users" />
             <End Role="Application" EntitySet="Applications" />
           </AssociationSet>
           <AssociationSet Name="FK__Staff__Departmen__6166761E" Association="Self.FK__Staff__Departmen__6166761E">
@@ -412,9 +413,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="k">
-            <EntityTypeMapping TypeName="KeeperProULModel.k">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="KeeperProULModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="DataPassport" ColumnName="DataPassport" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

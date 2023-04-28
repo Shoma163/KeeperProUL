@@ -31,6 +31,6 @@ namespace KeeperProUL
         public virtual DbSet<Purpose> Purposes { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<k> k { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
