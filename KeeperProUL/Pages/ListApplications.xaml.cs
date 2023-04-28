@@ -37,6 +37,8 @@ namespace KeeperProUL.Pages
 
             BindingUser();
 
+            database.Purposes.Select(p => p.Group).Distinct().ToList();
+
             SortDescriptions = new List<SortItem>()
             {
                 new SortItem()
