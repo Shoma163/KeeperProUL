@@ -43,11 +43,6 @@ namespace KeeperProUL.Pages
             {
                 new SortItem()
                 {
-                    Name = "Сортировка по статусу",
-                    Sort = new SortDescription("Status", ListSortDirection.Ascending),
-                },
-                new SortItem()
-                {
                     Name = "Сортировка заявок по возрастанию",
                     Sort = new SortDescription("User1.Position", ListSortDirection.Ascending),
                 },
