@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -37,7 +38,22 @@ namespace KeeperProUL.Pages
 
             BindingUser();
 
-            database.Purposes.Select(p => p.Group).Distinct().ToList();
+            LoadTypeApplication();
+
+            ObservableCollection<Division> divisions= new ObservableCollection<Division>(database.Divisions.ToList());
+
+            cbDivision.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+            {
+                Source = divisions
+            });
+
+            ObservableCollection<Status> statuses = new ObservableCollection<Status>(database.Status.ToList());
+
+            cbStatus.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+            {
+                Source = statuses
+            });
+
 
             SortDescriptions = new List<SortItem>()
             {
@@ -56,6 +72,24 @@ namespace KeeperProUL.Pages
             DataContext = this;
         }
 
+        public void LoadTypeApplication()
+        {
+            List<string> applicationTypes = new List<string>() { "Индивидуальное посещение" };
+            var types = database.Purposes.Select(p => p.Group).Distinct().ToList();
+            foreach (var type in types)
+            {
+                if (type != null)
+                {
+                    applicationTypes.Add(type.ToString());
+                }
+            }
+
+            cbType.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+            {
+                Source = applicationTypes
+            });
+        }
+
         public void BindingUser()
         {
             ObservableCollection<Application> applications = new ObservableCollection<Application>(database.Applications.ToList());
@@ -65,7 +99,7 @@ namespace KeeperProUL.Pages
                 Source = applications,
             });
 
-            
+
         }
 
         private void Filter()
@@ -73,21 +107,44 @@ namespace KeeperProUL.Pages
             string searchString = Search.Text.Trim();
 
             var view = CollectionViewSource.GetDefaultView(lvApplications.ItemsSource);
-            view.Filter = new Predicate<object>(o =>
+            view.Filter = o => 
             {
                 Application application = o as Application;
                 if (application == null) { return false; }
 
                 bool isVisible = true;
+
+                if (cbType.SelectedItem != null)
+                {
+                    if (cbType.SelectedIndex == 0)
+                    {
+                        isVisible = application.Purpose1.Group == null;
+                    }
+                    else
+                    {
+                        isVisible = application.Purpose1.Group == (string)cbType.SelectedItem;
+                    }
+                }
+
+                if(cbDivision.SelectedItem != null)
+                {
+                    isVisible = application.Purpose1.Staff1.Division1 == cbDivision.SelectedItem;
+                }
+
+                if (cbStatus.SelectedItem != null)
+                {
+                    isVisible = application.Status1 == cbStatus.SelectedItem;
+                }
+
                 if (searchString.Length > 0)
                 {
-                    isVisible = application.Status.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1 ||
+                    isVisible = isVisible && (application.Status.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1 ||
                     application.User1.LastName.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1 ||
-                    application.Purpose1.Staff1.Division.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1;
+                    application.Purpose1.Staff1.Division.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1);
                 }
 
                 return isVisible;
-            });
+            };
         }
 
         private void ApplySort()
@@ -107,6 +164,21 @@ namespace KeeperProUL.Pages
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplySort();
+        }
+
+        private void cbTypeApplication(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbSelectedDivision(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbSelectedStatus(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

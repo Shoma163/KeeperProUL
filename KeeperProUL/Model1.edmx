@@ -31,7 +31,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Group" Type="int" />
+          <Property Name="Group" Type="varchar" MaxLength="50" />
           <Property Name="Staff" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
@@ -207,7 +207,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Group" Type="Int32" />
+          <Property Name="Group" Type="String" />
           <Property Name="Staff" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Purpose" ToRole="Application" />
@@ -387,8 +387,8 @@
           <EntitySetMapping Name="Purposes">
             <EntityTypeMapping TypeName="KeeperProULModel.Purpose">
               <MappingFragment StoreEntitySet="Purpose">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Staff" ColumnName="Staff" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>

@@ -21,7 +21,7 @@ namespace KeeperProUL
         }
     
         public int ID { get; set; }
-        public Nullable<int> Group { get; set; }
+        public string Group { get; set; }
         public int Staff { get; set; }
         public System.DateTime Date { get; set; }
     

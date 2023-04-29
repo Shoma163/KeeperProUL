@@ -17,12 +17,32 @@
         <ListView Name="lvApplications" Grid.Column="0" ItemTemplate="{StaticResource lvApplications}" HorizontalContentAlignment="Stretch"></ListView>
 
         <StackPanel Grid.Column="1">
-            <TextBox Name="Search" TextChanged="Search_TextChanged" Margin="5"></TextBox>
-            <ComboBox Grid.Row="1" Margin="5"
+
+            <DockPanel>
+                <Label Content="Поиск" FontSize="13"></Label>
+                <TextBox Name="Search" TextChanged="Search_TextChanged" Margin="5 5 10 5"></TextBox>
+            </DockPanel>
+            
+            <Label Content="Сортировка по возрастнию / убыванию" FontSize="13"></Label>
+            
+            <DockPanel>
+                <ComboBox Grid.Column="1" Margin="5"
                   SelectedItem="{Binding SelectedSortDescription}"
                   ItemsSource="{Binding SortDescriptions}"
                   DisplayMemberPath="Name"
-                  SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+                  SelectionChanged="ComboBox_SelectionChanged">
+                </ComboBox>
+                <Button Width=""></Button>
+            </DockPanel>
+            
+            <Label Content="Тип заявки" FontSize="13"></Label>
+            <ComboBox Name="cbType" Grid.Column="1" Margin="5" SelectionChanged="cbTypeApplication"></ComboBox>
+            
+            <Label Content="Подразделение" FontSize="13"></Label>
+            <ComboBox Grid.Column="1" Name="cbDivision" DisplayMemberPath="NameDivision" Margin="5" SelectionChanged="cbSelectedDivision"></ComboBox>
+            
+            <Label Content="Статус заявки" FontSize="13"></Label>
+            <ComboBox Grid.Column="1" Name="cbStatus" DisplayMemberPath="NameStatus" Margin="5" SelectionChanged="cbSelectedStatus"></ComboBox>
         </StackPanel>
     </Grid>
 </Page>
