@@ -25,15 +25,12 @@
             
             <Label Content="Сортировка по возрастнию / убыванию" FontSize="13"></Label>
             
-            <DockPanel>
                 <ComboBox Grid.Column="1" Margin="5"
                   SelectedItem="{Binding SelectedSortDescription}"
                   ItemsSource="{Binding SortDescriptions}"
                   DisplayMemberPath="Name"
                   SelectionChanged="ComboBox_SelectionChanged">
                 </ComboBox>
-                <Button Width=""></Button>
-            </DockPanel>
             
             <Label Content="Тип заявки" FontSize="13"></Label>
             <ComboBox Name="cbType" Grid.Column="1" Margin="5" SelectionChanged="cbTypeApplication"></ComboBox>
