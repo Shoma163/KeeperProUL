@@ -180,8 +180,12 @@ namespace KeeperProUL.Pages
         private void cbSelectedStatus(object sender, SelectionChangedEventArgs e)
         {
             Filter();
-        }\
+        }
 
+        public void asd()
+        {
+
+        }
         private void BtnClickReset(object sender, RoutedEventArgs e)
         {
             cbSort.SelectedIndex = -1;
