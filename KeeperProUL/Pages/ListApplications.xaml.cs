@@ -188,7 +188,6 @@ namespace KeeperProUL.Pages
             cbType.SelectedIndex = -1;
             cbDivision.SelectedIndex = -1;
             cbStatus.SelectedIndex = -1;
-
         }
     }
 }
