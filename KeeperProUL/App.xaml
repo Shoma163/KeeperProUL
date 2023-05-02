@@ -52,5 +52,6 @@
                 </TextBlock>
             </Grid>
         </DataTemplate>
+
     </Application.Resources>
 </Application>

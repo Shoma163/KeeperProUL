@@ -25,7 +25,7 @@
             
             <Label Content="Сортировка по возрастнию / убыванию" FontSize="13"></Label>
             
-                <ComboBox Grid.Column="1" Margin="5"
+                <ComboBox Grid.Column="1" Margin="5" Name="cbSort"
                   SelectedItem="{Binding SelectedSortDescription}"
                   ItemsSource="{Binding SortDescriptions}"
                   DisplayMemberPath="Name"
@@ -40,6 +40,17 @@
             
             <Label Content="Статус заявки" FontSize="13"></Label>
             <ComboBox Grid.Column="1" Name="cbStatus" DisplayMemberPath="NameStatus" Margin="5" SelectionChanged="cbSelectedStatus"></ComboBox>
+            
+        </StackPanel>
+        
+        <StackPanel VerticalAlignment="Bottom" Grid.Column="1">
+            <Button Content="Сбросить"  Margin="10" Click="BtnClickReset" FontSize="13" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

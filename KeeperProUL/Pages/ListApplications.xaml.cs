@@ -147,6 +147,7 @@ namespace KeeperProUL.Pages
             };
         }
 
+
         private void ApplySort()
         {
             var view = CollectionViewSource.GetDefaultView(lvApplications.ItemsSource);
@@ -179,6 +180,15 @@ namespace KeeperProUL.Pages
         private void cbSelectedStatus(object sender, SelectionChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void BtnClickReset(object sender, RoutedEventArgs e)
+        {
+            cbSort.SelectedIndex = -1;
+            cbType.SelectedIndex = -1;
+            cbDivision.SelectedIndex = -1;
+            cbStatus.SelectedIndex = -1;
+
         }
     }
 }
