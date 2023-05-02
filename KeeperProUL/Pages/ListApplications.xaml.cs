@@ -182,10 +182,6 @@ namespace KeeperProUL.Pages
             Filter();
         }
 
-        public void asd()
-        {
-
-        }
         private void BtnClickReset(object sender, RoutedEventArgs e)
         {
             cbSort.SelectedIndex = -1;
