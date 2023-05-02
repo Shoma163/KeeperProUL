@@ -98,8 +98,6 @@ namespace KeeperProUL.Pages
             {
                 Source = applications,
             });
-
-
         }
 
         private void Filter()
@@ -151,9 +149,11 @@ namespace KeeperProUL.Pages
         private void ApplySort()
         {
             var view = CollectionViewSource.GetDefaultView(lvApplications.ItemsSource);
-            if (view == null || SelectedSortDescription == null) return;
+            if (view == null ) return;
 
             view.SortDescriptions.Clear();
+
+            if (SelectedSortDescription == null) return;
             view.SortDescriptions.Add(SelectedSortDescription.Sort);
         }
 
@@ -188,6 +188,11 @@ namespace KeeperProUL.Pages
             cbType.SelectedIndex = -1;
             cbDivision.SelectedIndex = -1;
             cbStatus.SelectedIndex = -1;
+        }
+
+        private void BtnClickEditingPages(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ApplicationsInfo());
         }
     }
 }

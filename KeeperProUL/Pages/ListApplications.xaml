@@ -44,7 +44,16 @@
         </StackPanel>
         
         <StackPanel VerticalAlignment="Bottom" Grid.Column="1">
-            <Button Content="Сбросить"  Margin="10" Click="BtnClickReset" FontSize="13" >
+            
+            <Button Content="Сбросить"  Margin="5" Click="BtnClickReset" FontSize="13" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Content="Страница редактирования →"  Margin="5" Click="BtnClickEditingPages" FontSize="13" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

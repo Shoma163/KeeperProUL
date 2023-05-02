@@ -16,8 +16,8 @@
                     <ColumnDefinition Width="1"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
-                <Border Height="20" Background="#FFC16DC1" Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="5">
+
+                <Border Height="20" Background="#006D5B" Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="5">
                     <TextBlock HorizontalAlignment="Center" Foreground="White">
                         <Run Text="Заявка" ></Run>
                         <Run Text="{Binding User1.Position}"></Run>
@@ -52,6 +52,31 @@
                 </TextBlock>
             </Grid>
         </DataTemplate>
-
+        <DataTemplate x:Key="lvApplicationInfo">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Height="20" Background="#006D5B" Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="5">
+                    <TextBlock HorizontalAlignment="Center" Foreground="White">
+                        <Run Text="Заявка" ></Run>
+                        <Run Text="{Binding User1.Position}"></Run>
+                    </TextBlock>
+                </Border>
+                <TextBlock Grid.Row="1" Margin="5 0">
+                    <Run Text="Паспортные данные:"></Run>
+                    <Run Text="{Binding User1.DataPassport}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="ФИО:"></Run>
+                    <Run Text="{Binding User1.LastName}"></Run>
+                    <Run Text="{Binding User1.FirstName}"></Run>
+                    <Run Text="{Binding User1.Patronymic}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="Статус заявки: "></Run>
+                    <Run Text="{Binding Status}" FontWeight="Bold"></Run>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>
