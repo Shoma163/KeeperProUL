@@ -180,7 +180,7 @@ namespace KeeperProUL.Pages
         private void cbSelectedStatus(object sender, SelectionChangedEventArgs e)
         {
             Filter();
-        }
+        }\
 
         private void BtnClickReset(object sender, RoutedEventArgs e)
         {
