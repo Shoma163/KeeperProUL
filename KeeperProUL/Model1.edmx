@@ -13,6 +13,7 @@
           <Property Name="User" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Purpose" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Date" Type="date" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -187,6 +188,8 @@
           <NavigationProperty Name="Purpose1" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Application" ToRole="Purpose" />
           <NavigationProperty Name="Status1" Relationship="Self.FK__Applicati__Statu__69FBBC1F" FromRole="Application" ToRole="Status" />
           <NavigationProperty Name="User1" Relationship="Self.FK__Applicatio__User__681373AD" FromRole="Application" ToRole="User" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Time" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -207,7 +210,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Group" Type="String" />
+          <Property Name="Group" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Staff" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Purpose" ToRole="Application" />
@@ -364,6 +367,7 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="KeeperProULModel.Application">
               <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="Purpose" ColumnName="Purpose" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

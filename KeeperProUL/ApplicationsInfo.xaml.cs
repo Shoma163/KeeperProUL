@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,6 +37,18 @@ namespace KeeperProUL
             BindingUserEditingPages();
 
             Time();
+
+            BindingCbEditingStatus();
+        }
+
+        public void BindingCbEditingStatus()
+        {
+            ObservableCollection<Status> statuses = new ObservableCollection<Status>(database.Status.ToList());
+
+            cbEditStatus.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+            {
+                Source = statuses
+            });
         }
 
         public void Time()
@@ -62,6 +75,8 @@ namespace KeeperProUL
                 minutes.Add(new Time() { Value = i, ValuseString = string.Format("{0:00}", i) });
             }
 
+            //TimeSpan time = new TimeSpan((cbEditTimeHour.SelectedItem as Time).Value, (cbeditTimeMinuts.SelectedItem as Time).Value,0);
+
         }
         public void BindingUserEditingPages()
         {
@@ -77,6 +92,14 @@ namespace KeeperProUL
 
         private void bcSaveEdit(object sender, RoutedEventArgs e)
         {
+            database.SaveChanges();
+        }
+
+        private void lvApplicationsPageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var UserInfo = lvApplicationsPageInfo.SelectedItem as Application;
+
+            spEditInfoUser.DataContext = UserInfo;
 
         }
     }
