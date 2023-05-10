@@ -13,7 +13,7 @@
           <Property Name="User" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Purpose" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Date" Type="date" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -188,8 +188,7 @@
           <NavigationProperty Name="Purpose1" Relationship="Self.FK__Applicati__Purpo__690797E6" FromRole="Application" ToRole="Purpose" />
           <NavigationProperty Name="Status1" Relationship="Self.FK__Applicati__Statu__69FBBC1F" FromRole="Application" ToRole="Status" />
           <NavigationProperty Name="User1" Relationship="Self.FK__Applicatio__User__681373AD" FromRole="Application" ToRole="User" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Department">
           <Key>

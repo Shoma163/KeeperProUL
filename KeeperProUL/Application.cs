@@ -18,7 +18,6 @@ namespace KeeperProUL
         public int Purpose { get; set; }
         public string Status { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<System.TimeSpan> Time { get; set; }
     
         public virtual Purpose Purpose1 { get; set; }
         public virtual Status Status1 { get; set; }

@@ -19,11 +19,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace KeeperProUL
 {
-    class Time
-    {
-        public int Value { get; set; }
-        public string ValuseString { get; set; }
-    }
+    //class Time
+    //{
+    //    public int Value { get; set; }
+    //    public string ValueString { get; set; }
+    //}
 
     public partial class ApplicationsInfo : Page
     {
@@ -35,8 +35,6 @@ namespace KeeperProUL
             database = new KeeperProULEntities();
 
             BindingUserEditingPages();
-
-            Time();
 
             BindingCbEditingStatus();
         }
@@ -51,33 +49,30 @@ namespace KeeperProUL
             });
         }
 
-        public void Time()
-        {
-            List<Time> hours = new List<Time>();
-            List<Time> minutes = new List<Time>();
+        //public void Time()
+        //{
+        //    List<Time> hours = new List<Time>();
+        //    List<Time> minutes = new List<Time>();
 
-            cbEditTimeHour.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
-            {
-                Source = hours,
-            });
-            cbeditTimeMinuts.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
-            {
-                Source = minutes,
-            });
+        //    cbEditTimeHour.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+        //    {
+        //        Source = hours,
+        //    });
+        //    cbeditTimeMinuts.SetBinding(ItemsControl.ItemsSourceProperty, new Binding()
+        //    {
+        //        Source = minutes,
+        //    });
 
 
-            for (int i = 0; i < 24; i++)
-            {
-                hours.Add(new Time() {  Value = i, ValuseString = string.Format("{0:00}", i)});
-            }
-            for (int i = 0; i < 60; i++)
-            {
-                minutes.Add(new Time() { Value = i, ValuseString = string.Format("{0:00}", i) });
-            }
-
-            //TimeSpan time = new TimeSpan((cbEditTimeHour.SelectedItem as Time).Value, (cbeditTimeMinuts.SelectedItem as Time).Value,0);
-
-        }
+        //    for (int i = 0; i < 24; i++)
+        //    {
+        //        hours.Add(new Time() {  Value = i, ValueString = string.Format("{0:00}", i)});
+        //    }
+        //    for (int i = 0; i < 60; i++)
+        //    {
+        //        minutes.Add(new Time() { Value = i, ValueString = string.Format("{0:00}", i) });
+        //    }
+        //}
         public void BindingUserEditingPages()
         {
             ObservableCollection<Application> applications = new ObservableCollection<Application>(database.Applications.ToList());
@@ -92,7 +87,15 @@ namespace KeeperProUL
 
         private void bcSaveEdit(object sender, RoutedEventArgs e)
         {
-            database.SaveChanges();
+           var SaveInfoEdit = database.SaveChanges();
+            if (SaveInfoEdit == 0)
+            {
+                MessageBox.Show("Не сохранилось");
+            }
+            else
+            {
+                MessageBox.Show("Сохранилось");
+            }
         }
 
         private void lvApplicationsPageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
